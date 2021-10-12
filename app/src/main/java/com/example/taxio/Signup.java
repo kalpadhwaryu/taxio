@@ -8,23 +8,22 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class Login extends AppCompatActivity {
-    Button callSignUp;
+public class Signup extends AppCompatActivity {
+    private Button callLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_signup);
 
-        callSignUp =findViewById(R.id.callSignup_btn);
+        callLogin=findViewById(R.id.callLogin);
 
-        callSignUp.setOnClickListener(new View.OnClickListener() {
+        callLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this,Signup.class);
+                Intent intent = new Intent(Signup.this,Login.class);
                 startActivity(intent);
             }
         });
-
     }
 }
