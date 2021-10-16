@@ -35,30 +35,6 @@ public class Signup extends AppCompatActivity {
         password_signup=findViewById(R.id.password_signup);
         signup_btn=findViewById(R.id.signup_btn);
 
-
-        signup_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rootNode =FirebaseDatabase.getInstance();
-                reference=rootNode.getReference("users");
-
-                if (!validateUsername() | !validateEmail()| !validatePhoneno() | !validatePassword()){
-                    return;
-                }
-
-                //Get all the values
-                String username = username_signup.getEditText().getText().toString();
-                String email = email_signup.getEditText().getText().toString();
-                String phoneno = phoneno_signup.getEditText().getText().toString();
-                String password = password_signup.getEditText().getText().toString();
-
-                UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
-                reference.child(phoneno).setValue(helperClass);
-
-                Toast.makeText(Signup.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         callLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +86,7 @@ public class Signup extends AppCompatActivity {
         }
     }
 
-    private boolean validatePhoneno(){
+    private Boolean validatePhoneno(){
         String val = phoneno_signup.getEditText().getText().toString();
         if(val.isEmpty()){
             phoneno_signup.setError("Field cannot be empty");
@@ -153,5 +129,23 @@ public class Signup extends AppCompatActivity {
         }
     }
 
+    public void signupUser(View view){
+        rootNode =FirebaseDatabase.getInstance();
+        reference=rootNode.getReference("users");
 
+        if (!validateUsername() | !validateEmail()| !validatePhoneno() | !validatePassword()){
+            return;
+        }
+
+        //Get all the values
+        String username = username_signup.getEditText().getText().toString();
+        String email = email_signup.getEditText().getText().toString();
+        String phoneno = phoneno_signup.getEditText().getText().toString();
+        String password = password_signup.getEditText().getText().toString();
+
+        UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
+        reference.child(phoneno).setValue(helperClass);
+
+        Toast.makeText(Signup.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+    }
 }
