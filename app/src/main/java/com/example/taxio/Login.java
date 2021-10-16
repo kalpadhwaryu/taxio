@@ -10,7 +10,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
     Button callSignUp,login_btn;
-    TextInputLayout username_login,password_login;
+    TextInputLayout email_login,password_login;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +34,11 @@ public class Login extends AppCompatActivity {
 
         callSignUp =findViewById(R.id.callSignup_btn);
 
-        username_login=findViewById(R.id.username_login);
+        email_login=findViewById(R.id.email_login);
         password_login=findViewById(R.id.password_login);
         login_btn=findViewById(R.id.login_btn);
+
+        auth=FirebaseAuth.getInstance();
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,17 +49,17 @@ public class Login extends AppCompatActivity {
         });
 
     }
-    private Boolean validateUsername(){
-        String val = username_login.getEditText().getText().toString();
+    private Boolean validateEmail(){
+        String val = email_login.getEditText().getText().toString();
 
         if(val.isEmpty()){
-            username_login.setError("Field cannot be empty");
+            email_login.setError("Field cannot be empty");
             return false;
         }
 
         else{
-            username_login.setError(null);
-            username_login.setErrorEnabled(false);
+            email_login.setError(null);
+            email_login.setErrorEnabled(false);
             return true;
         }
     }
@@ -71,7 +78,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginUser(View view){
-        if (!validateUsername() | !validatePassword()){
+        if (!validateEmail() | !validatePassword()){
             return;
         }
         else {
@@ -80,55 +87,22 @@ public class Login extends AppCompatActivity {
     }
 
     private void isUser() {
-        final String userEnteredUsername = username_login.getEditText().getText().toString().trim();
-        final String userEnteredPassword = password_login.getEditText().getText().toString().trim();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUser = reference.orderByChild("username").equalTo(userEnteredUsername);
+        String userEnteredEmail = email_login.getEditText().getText().toString().trim();
+        String userEnteredPassword = password_login.getEditText().getText().toString().trim();
 
-        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+        auth.signInWithEmailAndPassword(userEnteredEmail,userEnteredPassword).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-
-                    username_login.setError(null);
-                    username_login.setErrorEnabled(false);
-
-                    final String passwordFromDB = snapshot.child(userEnteredUsername).child("password").getValue(String.class);
-
-                    if (passwordFromDB.equals(userEnteredPassword)){
-                        Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
-                        username_login.setError(null);
-                        username_login.setErrorEnabled(false);
-
-                        String usernameFromDB = snapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        String emailFromDB = snapshot.child(userEnteredUsername).child("email").getValue(String.class);
-                        String phonenoFromDB = snapshot.child(userEnteredUsername).child("phoneno").getValue(String.class);
-
-                        Intent intent = new Intent(getApplicationContext(),UserProfile.class);
-                        intent.putExtra("username",usernameFromDB);
-                        intent.putExtra("email",emailFromDB);
-                        intent.putExtra("phoneno",phonenoFromDB);
-                        intent.putExtra("password",passwordFromDB);
-
-                        startActivity(intent);
-//                        Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        password_login.setError("Wrong password");
-                        password_login.requestFocus();
-                    }
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(Login.this,Dashboard.class));
                 }
                 else {
-                    username_login.setError("No such user exists");
-                    username_login.requestFocus();
+                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
         });
+
     }
 }

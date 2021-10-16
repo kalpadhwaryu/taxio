@@ -1,5 +1,6 @@
 package com.example.taxio;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,7 +11,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,6 +24,7 @@ public class Signup extends AppCompatActivity {
 
     private TextInputLayout username_signup,email_signup,phoneno_signup,password_signup;
     private Button callLogin,signup_btn;
+    private FirebaseAuth auth;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -34,6 +41,8 @@ public class Signup extends AppCompatActivity {
         phoneno_signup=findViewById(R.id.phoneno_signup);
         password_signup=findViewById(R.id.password_signup);
         signup_btn=findViewById(R.id.signup_btn);
+
+        auth=FirebaseAuth.getInstance();
 
         callLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +155,19 @@ public class Signup extends AppCompatActivity {
         UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
         reference.child(phoneno).setValue(helperClass);
 
-        Toast.makeText(Signup.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+
+
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(Signup.this, "Signup Successful. Now Login", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Signup.this,Login.class));
+                }
+                else {
+                    Toast.makeText(Signup.this, "Signup Unsuccessful", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
