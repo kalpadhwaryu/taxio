@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/drawable/taxio_icon_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_calculate_tax.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_dashboard.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_emi.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_income.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Kalp Adhwaryu/AndroidStudioProjects/taxio/app/src/main/res/layout/activity_signup.xml" value="0.25416666666666665" />

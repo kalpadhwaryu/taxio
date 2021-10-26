@@ -103,7 +103,8 @@
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/calculateTax">
 
                     <TextView
                         android:id="@+id/textView4"
@@ -114,7 +115,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Calculate Tax"
                         android:textSize="24sp"
-                        app:fontFamily="@font/fredoka_one"/>
+                        app:fontFamily="@font/fredoka_one" />
 
                     <ImageView
                         android:id="@+id/imageView3"
