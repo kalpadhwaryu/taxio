@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
 
         //File ITR
         RelativeLayout fileITR = (RelativeLayout) rootView.findViewById(R.id.fileITR);
-        calculateTax.setOnClickListener(new View.OnClickListener() {
+        fileITR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fileITR();
