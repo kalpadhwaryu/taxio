@@ -73,6 +73,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home,
                 container, false);
+
+        //Tax Calculator
         RelativeLayout calculateTax = (RelativeLayout) rootView.findViewById(R.id.calculateTax);
         calculateTax.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,11 +82,25 @@ public class HomeFragment extends Fragment {
                 calculateTax();
             }
         });
+
+        //File ITR
+        RelativeLayout fileITR = (RelativeLayout) rootView.findViewById(R.id.fileITR);
+        calculateTax.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fileITR();
+            }
+        });
         return rootView;
     }
 
     public void calculateTax(){
         Intent intent = new Intent(getActivity(),CalculateTaxAct.class);
+        startActivity(intent);
+    }
+
+    public void fileITR(){
+        Intent intent = new Intent(getActivity(),FileITR.class);
         startActivity(intent);
     }
 }

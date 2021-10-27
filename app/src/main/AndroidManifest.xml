@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taxio">
         <activity
+            android:name=".FileITR"
+            android:exported="true" />
+        <activity
             android:name=".EMIActivity"
             android:exported="true" />
         <activity
