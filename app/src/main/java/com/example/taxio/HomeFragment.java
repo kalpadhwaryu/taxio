@@ -91,6 +91,15 @@ public class HomeFragment extends Fragment {
                 fileITR();
             }
         });
+
+        //Find CAs
+        RelativeLayout findCAs = (RelativeLayout) rootView.findViewById(R.id.findCAs);
+        findCAs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findCAs();
+            }
+        });
         return rootView;
     }
 
@@ -101,6 +110,11 @@ public class HomeFragment extends Fragment {
 
     public void fileITR(){
         Intent intent = new Intent(getActivity(),FileITR.class);
+        startActivity(intent);
+    }
+
+    public void findCAs(){
+        Intent intent = new Intent(getActivity(),FindCAs.class);
         startActivity(intent);
     }
 }

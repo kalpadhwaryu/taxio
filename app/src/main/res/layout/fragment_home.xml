@@ -212,7 +212,8 @@
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/findCAs">
 
                     <TextView
                         android:id="@+id/textView8"
@@ -221,8 +222,8 @@
                         android:layout_below="@id/cycle"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Verify PAN"
-                        android:textSize="24sp"
+                        android:text="Find nearby CAs"
+                        android:textSize="20sp"
                         app:fontFamily="@font/fredoka_one" />
 
                     <ImageView
@@ -231,7 +232,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/img_5" />
+                        app:srcCompat="@drawable/img_findcas" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
