@@ -100,6 +100,15 @@ public class HomeFragment extends Fragment {
                 findCAs();
             }
         });
+
+        //Download ITR forms
+        RelativeLayout downloadForms = (RelativeLayout) rootView.findViewById(R.id.downloadForms);
+        downloadForms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downloadForms();
+            }
+        });
         return rootView;
     }
 
@@ -115,6 +124,11 @@ public class HomeFragment extends Fragment {
 
     public void findCAs(){
         Intent intent = new Intent(getActivity(),FindCAs.class);
+        startActivity(intent);
+    }
+
+    public void downloadForms(){
+        Intent intent = new Intent(getActivity(),DownloadForms.class);
         startActivity(intent);
     }
 }

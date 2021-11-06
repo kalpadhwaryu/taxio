@@ -173,7 +173,8 @@
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/downloadForms">
 
                     <TextView
                         android:id="@+id/textView7"
