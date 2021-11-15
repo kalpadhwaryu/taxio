@@ -4,9 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +24,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    FirebaseUser user;
+    TextView profile_username;
+    TextInputEditText profile_username2,profile_email;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,12 +68,38 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile,
+                container, false);
+
+        user= FirebaseAuth.getInstance().getCurrentUser();
+
+        profile_username=rootView.findViewById(R.id.profile_username);
+        profile_username2=rootView.findViewById(R.id.profile_username2);
+        profile_email=rootView.findViewById(R.id.profile_email);
+
+        if (user!=null){
+            Toast.makeText(getActivity(), "User Signed In", Toast.LENGTH_SHORT).show();
+
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+
+            profile_username.setText(name.toString());
+            profile_username2.setText(name.toString());
+            profile_email.setText(email.toString());
+        }
+        else{
+            Toast.makeText(getActivity(), "User Not Signed In", Toast.LENGTH_SHORT).show();
+        }
+        return rootView;
+    }
+
+    public void update(View view){
+
     }
 }

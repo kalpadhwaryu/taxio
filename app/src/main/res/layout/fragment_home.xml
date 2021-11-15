@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:tools="http://schemas.android.com/tools"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF">
@@ -85,7 +100,7 @@
                         android:layout_marginTop="10dp"
                         android:text="What is ITR?"
                         android:textSize="24sp"
-                        app:fontFamily="@font/fredoka_one"/>
+                        app:fontFamily="@font/fredoka_one" />
 
                     <ImageView
                         android:id="@+id/bus"
@@ -93,7 +108,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/img_1" />
+                        app:srcCompat="@drawable/ill1" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -233,7 +248,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/img_findcas" />
+                        app:srcCompat="@drawable/ill5" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -269,6 +284,7 @@
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 
 
-</ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>

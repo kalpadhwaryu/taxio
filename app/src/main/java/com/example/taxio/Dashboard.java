@@ -1,15 +1,19 @@
 package com.example.taxio;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 public class Dashboard extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,8 +22,8 @@ public class Dashboard extends AppCompatActivity {
         bottomNavigation=findViewById(R.id.bottom_navigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_search));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_profile));
+
+        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_profile));
 
         bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
@@ -30,9 +34,6 @@ public class Dashboard extends AppCompatActivity {
                         fragment= new HomeFragment();
                         break;
                     case 2:
-                        fragment=new SearchFragment();
-                        break;
-                    case 3:
                         fragment=new ProfileFragment();
                         break;
                 }
@@ -56,4 +57,5 @@ public class Dashboard extends AppCompatActivity {
                 .replace(R.id.frame_layout,fragment)
                 .commit();
     }
+
 }

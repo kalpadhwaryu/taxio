@@ -1,22 +1,35 @@
 package com.example.taxio;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
+    DrawerLayout drawerLayout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +60,7 @@ public class HomeFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -109,7 +123,23 @@ public class HomeFragment extends Fragment {
                 downloadForms();
             }
         });
+
+        drawerLayout=(DrawerLayout) rootView.findViewById(R.id.drawer_layout);
+        NavigationView navigationView=(NavigationView) rootView.findViewById(R.id.nav_view);
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
+
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(),drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
         return rootView;
+
     }
 
     public void calculateTax(){
@@ -130,5 +160,35 @@ public class HomeFragment extends Fragment {
     public void downloadForms(){
         Intent intent = new Intent(getActivity(),DownloadForms.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                break;
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_logout:
+                startActivity(new Intent(getActivity(),Login.class));
+                break;
+            case R.id.nav_website:
+                try {
+                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://incometaxindia.gov.in/Pages/default.aspx"));
+                    startActivity(myIntent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getActivity(), "No application can handle this request."
+                            + " Please install a web browser",  Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            case R.id.nav_aboutus:
+                break;
+            case R.id.nav_rateus:
+                Toast.makeText(getActivity(), "Thanks for rating us!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return false;
     }
 }

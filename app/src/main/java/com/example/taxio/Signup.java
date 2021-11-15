@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,6 +29,8 @@ public class Signup extends AppCompatActivity {
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+    FirebaseUser firebaseUser;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +145,9 @@ public class Signup extends AppCompatActivity {
         rootNode =FirebaseDatabase.getInstance();
         reference=rootNode.getReference("users");
 
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        userID=firebaseUser.getUid();
+
         if (!validateUsername() | !validateEmail()| !validatePhoneno() | !validatePassword()){
             return;
         }
@@ -153,7 +159,8 @@ public class Signup extends AppCompatActivity {
         String password = password_signup.getEditText().getText().toString();
 
         UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
-        reference.child(phoneno).setValue(helperClass);
+//        reference.child(phoneno).setValue(helperClass);
+        reference.child(userID).setValue(helperClass);
 
 
 
@@ -169,5 +176,31 @@ public class Signup extends AppCompatActivity {
                 }
             }
         });
+
+//        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()) {
+//                    UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
+//                    FirebaseDatabase.getInstance().getReference("users")
+//                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                            .setValue(helperClass)
+//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (task.isSuccessful()) {
+//                                Toast.makeText(Signup.this, "Signup Successful. Now Login", Toast.LENGTH_SHORT).show();
+//                                startActivity(new Intent(Signup.this, Login.class));
+//                            } else {
+//                                Toast.makeText(Signup.this, "Signup Unsuccessful", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                }
+//                else {
+//                    Toast.makeText(Signup.this, "This Signup Unsuccessful", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 }
