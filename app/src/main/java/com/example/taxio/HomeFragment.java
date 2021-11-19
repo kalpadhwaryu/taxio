@@ -88,6 +88,16 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
         View rootView = inflater.inflate(R.layout.fragment_home,
                 container, false);
 
+        //What is ITR
+        RelativeLayout whatisITR = (RelativeLayout) rootView.findViewById(R.id.whatisITR);
+        whatisITR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whatisITR();
+            }
+        });
+
+
         //Tax Calculator
         RelativeLayout calculateTax = (RelativeLayout) rootView.findViewById(R.id.calculateTax);
         calculateTax.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +134,15 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
             }
         });
 
+        //HRA Exemption
+        RelativeLayout hraExemption = (RelativeLayout) rootView.findViewById(R.id.HRAExemption);
+        hraExemption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HRAExemption();
+            }
+        });
+
         drawerLayout=(DrawerLayout) rootView.findViewById(R.id.drawer_layout);
         NavigationView navigationView=(NavigationView) rootView.findViewById(R.id.nav_view);
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
@@ -140,6 +159,11 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
 
         return rootView;
 
+    }
+
+    public void whatisITR(){
+        Intent intent = new Intent(getActivity(),WhatIsITR.class);
+        startActivity(intent);
     }
 
     public void calculateTax(){
@@ -159,6 +183,11 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
 
     public void downloadForms(){
         Intent intent = new Intent(getActivity(),DownloadForms.class);
+        startActivity(intent);
+    }
+
+    public void HRAExemption(){
+        Intent intent = new Intent(getActivity(),HRAExemption.class);
         startActivity(intent);
     }
 

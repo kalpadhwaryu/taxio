@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taxio">
         <activity
+            android:name=".HRAExemption"
+            android:exported="true" />
+        <activity
+            android:name=".Business"
+            android:exported="true" />
+        <activity
+            android:name=".Job"
+            android:exported="true" />
+        <activity
+            android:name=".WhatIsITR"
+            android:exported="true" />
+        <activity
             android:name=".DownloadForms"
             android:exported="true" />
         <activity

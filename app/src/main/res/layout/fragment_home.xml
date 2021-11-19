@@ -89,7 +89,8 @@
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/whatisITR">
 
                     <TextView
                         android:id="@+id/textView3"
@@ -159,7 +160,8 @@
                 android:layout_weight="1">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/HRAExemption">
 
                     <TextView
                         android:id="@+id/textView6"
@@ -168,8 +170,8 @@
                         android:layout_below="@id/bus1"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Type of ITRs"
-                        android:textSize="24sp"
+                        android:text="HRA Exemption"
+                        android:textSize="20sp"
                         app:fontFamily="@font/fredoka_one" />
 
                     <ImageView

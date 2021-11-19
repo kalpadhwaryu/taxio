@@ -145,8 +145,7 @@ public class Signup extends AppCompatActivity {
         rootNode =FirebaseDatabase.getInstance();
         reference=rootNode.getReference("users");
 
-        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-        userID=firebaseUser.getUid();
+
 
         if (!validateUsername() | !validateEmail()| !validatePhoneno() | !validatePassword()){
             return;
@@ -158,9 +157,9 @@ public class Signup extends AppCompatActivity {
         String phoneno = phoneno_signup.getEditText().getText().toString();
         String password = password_signup.getEditText().getText().toString();
 
-        UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
+
 //        reference.child(phoneno).setValue(helperClass);
-        reference.child(userID).setValue(helperClass);
+
 
 
 
@@ -168,6 +167,11 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+                    userID=firebaseUser.getUid();
+                    UserHelperClass helperClass = new UserHelperClass(username,email,phoneno,password);
+                    reference.child(userID).setValue(helperClass);
+
                     Toast.makeText(Signup.this, "Signup Successful. Now Login", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Signup.this,Login.class));
                 }
