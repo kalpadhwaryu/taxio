@@ -94,7 +94,7 @@ public class FindCAs extends AppCompatActivity {
                                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
 
                                 textView.setTextColor(Color.BLACK);
-                                textView.setTextSize(12);
+                                textView.setTextSize(13);
                                 return view;
                             }
                         };
@@ -116,7 +116,7 @@ public class FindCAs extends AppCompatActivity {
                                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
 
                                 textView.setTextColor(Color.BLACK);
-                                textView.setTextSize(12);
+                                textView.setTextSize(13);
                                 return view;
                             }
                         };
@@ -137,7 +137,7 @@ public class FindCAs extends AppCompatActivity {
                                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
 
                                 textView.setTextColor(Color.BLACK);
-                                textView.setTextSize(12);
+                                textView.setTextSize(13);
                                 return view;
                             }
                         };
