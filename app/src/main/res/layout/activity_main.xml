@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="#1597E5"
     android:textAlignment="center"
     tools:context=".MainActivity">
 
@@ -28,7 +28,7 @@
         android:fontFamily="@font/fredoka_one"
         android:text="taxio"
         android:textAlignment="center"
-        android:textColor="#FFCA28"
+        android:textColor="@color/white"
         android:textSize="70sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/oswald_light"
         android:text="Your personal Tax assistant"
-        android:textColor="#FFCA28"
+        android:textColor="@color/white"
         android:textSize="27sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -198,6 +198,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
             case R.id.nav_home:
                 break;
             case R.id.nav_settings:
+                Toast.makeText(getActivity(), "Clicked Settings!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 startActivity(new Intent(getActivity(),Login.class));
@@ -212,6 +213,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
                     e.printStackTrace();
                 }
             case R.id.nav_aboutus:
+                Toast.makeText(getActivity(), "Clicked About Us!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_rateus:
                 Toast.makeText(getActivity(), "Thanks for rating us!", Toast.LENGTH_SHORT).show();

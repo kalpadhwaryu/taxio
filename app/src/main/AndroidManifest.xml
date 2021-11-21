@@ -39,19 +39,10 @@
             android:name=".FileITR"
             android:exported="true" />
         <activity
-            android:name=".EMIActivity"
-            android:exported="true" />
-        <activity
-            android:name=".IncomeActivity"
-            android:exported="true" />
-        <activity
             android:name=".CalculateTaxAct"
             android:exported="true" />
         <activity
             android:name=".Dashboard"
-            android:exported="true" />
-        <activity
-            android:name=".UserProfile"
             android:exported="true" />
         <activity
             android:name=".Signup"
