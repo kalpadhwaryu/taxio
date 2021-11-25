@@ -101,7 +101,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/whatIsITR"
+                        android:layout_below="@id/jenil_img"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:text="What is ITR?"
@@ -110,7 +110,7 @@
                         app:fontFamily="@font/fredoka_one" />
 
                     <ImageView
-                        android:id="@+id/whatIsITR"
+                        android:id="@+id/jenil_img"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"

@@ -213,7 +213,7 @@ public class HomeFragment extends Fragment implements NavigationView.OnNavigatio
                     e.printStackTrace();
                 }
             case R.id.nav_aboutus:
-                Toast.makeText(getActivity(), "Clicked About Us!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(),AboutUs.class));
                 break;
             case R.id.nav_rateus:
                 Toast.makeText(getActivity(), "Thanks for rating us!", Toast.LENGTH_SHORT).show();
